@@ -1,34 +1,25 @@
 def main():
     print()
-    strTemp = "="
-    if CoolWordsChecker() == True:
-        print("Moving to next functionality")
+    if CoolWordsChecker():
+        print("Moving to the next functionality")
     else:
         print("You are stuck here")
 
-
-def WordsChecker():...
-
-
 def CoolWordsChecker():
     """
-This method checks if a user's input matches a pre-defined password
-    :return:
+    This method checks if a user's input matches a predefined password
+    :return: True if the password is correct, False otherwise
     """
 
     secretWord = "EatSh*tPitt"
-    userInput = input("Guess the password")
-    if (secretWord == userInput):
+    userInput = input("Guess the password: ")
+    if secretWord == userInput:
         return True
     else:
+        print("Wrong Password!")
         return False
 
-
-        print("Wrong Password!")
-
-
-
-if __name__ == "__main__" :
+if __name__ == "__main__":
     main()
 
 
