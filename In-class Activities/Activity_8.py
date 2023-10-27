@@ -1,21 +1,15 @@
-import requests
-from lxml import html
-import Web_Scraping
+from Web_Scraping import get_web_tree
 
 url = "https://www.wvu.edu"
 
-response = requests.get(url)
+web_tree = get_web_tree(url)
 
-if response.status_code == 200:
+def extract_text(tree, num_texts):
+    texts = tree.xpath('//text()')
+    return texts[:num_texts]
 
-    tree = html.fromstring(response.content)
-
-
-    texts = extract_text(tree, 5)
+if web_tree is not None:
+    texts = extract_text(web_tree, num_texts=5)  # Add a comma to separate the arguments
 
     for text in texts:
         print(text)
-
-
-else:
-    print("Failed to retrieve the webpage. Status code:", response.status_code)
