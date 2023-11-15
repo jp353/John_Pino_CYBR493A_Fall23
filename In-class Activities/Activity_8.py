@@ -13,3 +13,20 @@ if web_tree is not None:
 
     for text in texts:
         print(text)
+
+html_content = '''
+<html>
+  <body>
+    <h2 class="header-margin">Let us be your guide</h2>
+  </body>
+</html>
+'''
+
+# Parse the HTML content
+tree = html.fromstring(html_content)
+
+# Extract text from the element with class "header-margin"
+header_text = tree.xpath('//h2[@class="header-margin"]/text()')[0]  # Get the first matching element
+
+# Print the extracted text
+print("Header Text:", header_text)
