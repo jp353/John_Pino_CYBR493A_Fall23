@@ -1,6 +1,5 @@
 import Web_Scraping as wb
-import DBConnector as dbc
-import functions
+#import functions
 
 """
 This will be our main screen
@@ -15,14 +14,20 @@ def main():
     display_bugs_info(links[user_input])
 
 
-
 def generate_links(start_link):
     """
         This method generates ALL the links to all pages and stores them in a list
         :param start_link: The start link of the bug tracking system.
         :return: The list of all pages to all bugs. Each element in the list will refer to one page
     """
+    # Get total number of pages
+    #1. Get # of bugs / 75 (xpath)
+    main_tree = wb.get_web_tree(start_link)
+    bugs = main_tree.xpath('//*[@id="bugs-table-listing"]//text()')
+    print(bugs)
     list_of_links = []
+    index_of_75 = main_tree.index('75')
+    print(index_of_75)
 
     # everytime you get a link to a new page, use list_of_links.append(new_page)
 
