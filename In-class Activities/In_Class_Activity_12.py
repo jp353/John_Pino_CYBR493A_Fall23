@@ -2,8 +2,6 @@ import Web_Scraping as wb
 import lxml
 import requests
 
-
-
 def main():
     """
     Main screen for the web scrapping file
