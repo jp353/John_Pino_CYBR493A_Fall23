@@ -1,32 +1,33 @@
-from Web_Scraping import get_web_tree
+import Web_Scraping as wb
 
-url = "https://www.wvu.edu"
 
-web_tree = get_web_tree(url)
+def main():
+    """
+    Main screen for the web scrapping file
+    :return:
+    """
 
-def extract_text(tree, num_texts):
-    texts = tree.xpath('//text()')
-    return texts[:num_texts]
+print("Here's a bunch of texts from the WVU website:")
 
-if web_tree is not None:
-    texts = extract_text(web_tree, num_texts=5)  # Add a comma to separate the arguments
+main_tree = wb.get_web_tree("https://www.wvu.edu")
 
-    for text in texts:
-        print(text)
 
-html_content = '''
-<html>
-  <body>
-    <h2 class="header-margin">Let us be your guide</h2>
-  </body>
-</html>
-'''
+financial_aid = main_tree.xpath('/html/body/main/div[1]/div[1]/div/h1/span/text()')
+print(financial_aid)
 
-# Parse the HTML content
-tree = html.fromstring(html_content)
+guide = main_tree.xpath('/html/body/main/div[3]/div/div[1]/h2/text()')
+print(guide)
 
-# Extract text from the element with class "header-margin"
-header_text = tree.xpath('//h2[@class="header-margin"]/text()')[0]  # Get the first matching element
+wheres_my_refund = main_tree.xpath('/html/body/main/div[4]/div/div[2]/ul/li[13]/a/text()')
+print(wheres_my_refund)
 
-# Print the extracted text
-print("Header Text:", header_text)
+admitted_students = main_tree.xpath('/html/body/main/div[3]/div/div[3]/div[2]/div/h3/text()')
+print(admitted_students)
+
+wvu_help = main_tree.xpath('/html/body/main/div[3]/div/div[2]/p[2]/text()')
+print(wvu_help)
+
+
+
+if __name__ == "__main__":
+    main()
