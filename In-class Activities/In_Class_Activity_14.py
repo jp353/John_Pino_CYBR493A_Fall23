@@ -13,20 +13,21 @@ main_tree = get_web_tree(link)
 
 primaries = main_tree.xpath('//*[@class="group"]//text()')
 primaries_raw = main_tree.xpath('//*[@class="group"]//text()')
-pattern = re.compile(r"'(.+?)','-\((\d{3})\)''")
+pattern = re.compile(r'(.+?) - \((\d{3})\)')
 
-for primary in primaries:
-    # Find patter
+
+for i in primaries:
+    print(i)
+
+
+'''for primary in primaries:
+    # Find pattern
     match = pattern.search(primary)
 
     # Check if the pattern is found
     if match:
-
-        # Get and print matches
-        string1 = match.group(1).strip()
-        string2 = match.group(2).strip()
-        number = match.group(3).strip()
-
-        print(f"String 1: {string1}\nString 2: {string2}\nNumber: {number}\n")
+        # Print the matched components directly
+        print(
+            f"CWE: {match.group(1).strip()}\nThree-digit number: {match.group(2).strip()}")
     else:
-        print(primaries_raw)
+        print("None found")'''
