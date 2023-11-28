@@ -10,12 +10,23 @@ def get_web_tree(link):
 link = "https://cwe.mitre.org/data/definitions/888.html"
 main_tree = get_web_tree(link)
 
-# Print the text content of each matching element
-primaries = main_tree.xpath('//*[@class="group"]//text()')
-for primary in primaries:
-    # Use regular expression to find text within parentheses
-    matches = re.findall(r'\((.*?)\)', primary)
 
-    # Print the matches
-    for match in matches:
-        print(match.strip())
+primaries = main_tree.xpath('//*[@class="group"]//text()')
+primaries_raw = main_tree.xpath('//*[@class="group"]//text()')
+pattern = re.compile(r'(.+?),(.+?) - \((\d+)\)')
+
+for primary in primaries:
+    # Find patter
+    match = pattern.search(primary)
+
+    # Check if the pattern is found
+    if match:
+
+        # Get and print matches
+        string1 = match.group(1).strip()
+        string2 = match.group(2).strip()
+        number = match.group(3).strip()
+
+        print(f"String 1: {string1}\nString 2: {string2}\nNumber: {number}\n")
+    else:
+        print(primaries_raw)
