@@ -13,7 +13,7 @@ main_tree = get_web_tree(link)
 
 primaries = main_tree.xpath('//*[@class="group"]//text()')
 primaries_raw = main_tree.xpath('//*[@class="group"]//text()')
-pattern = re.compile(r'(.+?),(.+?) - \((\d+)\)')
+pattern = re.compile(r"'(.+?)','-\((\d{3})\)''")
 
 for primary in primaries:
     # Find patter
